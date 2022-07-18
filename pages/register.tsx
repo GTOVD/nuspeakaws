@@ -1,8 +1,9 @@
 import * as React from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import Input from "@material-ui/core/Input";
-import { Button, Grid, TextField } from "@mui/material";
-import theme from "../src/theme";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { Alert, Button, Grid, Snackbar, TextField } from "@mui/material";
+import { useState } from "react";
+import { useUser } from "../src/context/AuthContext";
+import { Auth } from "aws-amplify";
 
 interface IFormInput {
     username: string;
@@ -18,13 +19,51 @@ export default function Register() {
         formState: { errors },
         handleSubmit,
     } = useForm<IFormInput>();
+    const [open, setOpen] = useState<boolean>(false);
+    const [signUpError, setSignUpError] = useState<string>("");
+    const { user, setUser } = useUser();
 
-    console.log("errors: ", errors);
-
-    const onSubmit: SubmitHandler<IFormInput> = (data) => {
-        console.log("Submitted the form :)");
-        console.log(data);
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        try {
+            signUp(data);
+        } catch (err) {
+            console.log(err);
+            setOpen(true);
+        }
     };
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (
+        event?: React.SyntheticEvent | Event,
+        reason?: string
+    ) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    async function signUp(data: IFormInput) {
+        const { username, password, email } = data;
+        try {
+            const { user } = await Auth.signUp({
+                username,
+                password,
+                attributes: {
+                    email,
+                },
+            });
+            console.log("Signed up a user ", user);
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    console.log("User is : ", user);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -34,6 +73,7 @@ export default function Register() {
                 alignItems="center"
                 justifyContent="center"
                 spacing={2}
+                marginTop={10}
             >
                 <Grid item>
                     <TextField
@@ -103,7 +143,7 @@ export default function Register() {
                                 message: "Please enter a valid password",
                             },
                             minLength: {
-                                value: 6,
+                                value: 8,
                                 message: "Please enter a valid password",
                             },
                             maxLength: {
@@ -142,11 +182,25 @@ export default function Register() {
                     />
                 </Grid>
                 <Grid item>
-                    <Button color="primary" variant="contained" type="submit">
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        type="submit"
+                        onClick={handleClick}
+                    >
                         Register
                     </Button>
                 </Grid>
             </Grid>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert
+                    onClose={handleClose}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                >
+                    {signUpError}
+                </Alert>
+            </Snackbar>
         </form>
     );
 }

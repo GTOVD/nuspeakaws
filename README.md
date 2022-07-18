@@ -60,4 +60,5 @@ amplify add api
 amplify push
 amplify console
 npm install react-hook-form
+npm install aws-amplify
 ```

@@ -10,11 +10,6 @@
       "StackName": "amplify-nuspeak-main-194004",
       "StackId": "arn:aws:cloudformation:us-west-1:547274915206:stack/amplify-nuspeak-main-194004/8c739bd0-063a-11ed-97bf-06921435b933",
       "AmplifyAppId": "d2jaxub7w5bdqr"
-    },
-    "categories": {
-      "auth": {
-        "nuspeak8ec790e1": {}
-      }
     }
   }
 }
