@@ -85,7 +85,7 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -121,7 +121,7 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -157,7 +157,7 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -195,7 +195,7 @@ export const createComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt
@@ -228,7 +228,7 @@ export const updateComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt
@@ -261,7 +261,7 @@ export const deleteComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt

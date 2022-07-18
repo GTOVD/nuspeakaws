@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "nuspeak",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnuspeak46c65039",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2022-07-18T07:26:16.270Z"
+}

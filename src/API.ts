@@ -74,7 +74,7 @@ export type Post = {
   __typename: "Post",
   id: string,
   title: string,
-  Communities?: Communities | null,
+  communities?: Communities | null,
   comments?: ModelCommentConnection | null,
   createdAt: string,
   updatedAt: string,
@@ -301,7 +301,7 @@ export type CreatePostMutation = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -343,7 +343,7 @@ export type UpdatePostMutation = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -385,7 +385,7 @@ export type DeletePostMutation = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -430,7 +430,7 @@ export type CreateCommentMutation = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -468,7 +468,7 @@ export type UpdateCommentMutation = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -506,7 +506,7 @@ export type DeleteCommentMutation = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -593,7 +593,7 @@ export type GetPostQuery = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -638,7 +638,7 @@ export type ListPostsQuery = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -671,7 +671,7 @@ export type GetCommentQuery = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -820,7 +820,7 @@ export type OnCreatePostSubscription = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -861,7 +861,7 @@ export type OnUpdatePostSubscription = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -902,7 +902,7 @@ export type OnDeletePostSubscription = {
     __typename: "Post",
     id: string,
     title: string,
-    Communities?:  {
+    communities?:  {
       __typename: "Communities",
       id: string,
       name: string,
@@ -946,7 +946,7 @@ export type OnCreateCommentSubscription = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -983,7 +983,7 @@ export type OnUpdateCommentSubscription = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,
@@ -1020,7 +1020,7 @@ export type OnDeleteCommentSubscription = {
       __typename: "Post",
       id: string,
       title: string,
-      Communities?:  {
+      communities?:  {
         __typename: "Communities",
         id: string,
         name: string,

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "nuspeak",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/zown/nuspeakaws/amplify/backend/api/nuspeak/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2022-07-25T07:26:30.980Z",
+      "keyDescription": ""
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authnuspeak46c65039"
+      }
+    ],
+    "conflictResolution": {}
+  }
+}

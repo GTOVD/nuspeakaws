@@ -73,7 +73,7 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost(owner: $owner) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -106,7 +106,7 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost(owner: $owner) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -139,7 +139,7 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost(owner: $owner) {
       id
       title
-      Communities {
+      communities {
         id
         name
         posts {
@@ -174,7 +174,7 @@ export const onCreateComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt
@@ -204,7 +204,7 @@ export const onUpdateComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt
@@ -234,7 +234,7 @@ export const onDeleteComment = /* GraphQL */ `
       post {
         id
         title
-        Communities {
+        communities {
           id
           name
           createdAt
