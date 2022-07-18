@@ -1,3 +1,7 @@
+# NuSpeak
+
+## A social media link share site utilizing Authentication using Amazon Cognito, Database using DynamoDB, GraphQL API using Amazon AppSync, Storage for data using S3 Buckets, Next.JS, Static Site Generation, Incremental Static Regeneration, Server-side Render, Next.JS Image Component. An extremely quick optimized website utilizing modern technologies to deliver a smooth user experience.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
