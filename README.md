@@ -22,8 +22,8 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
@@ -32,3 +32,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Getting Started with your own:
+
+```
+npx create-next-app {name}
+cd {name}
+npm run dev
+create tsconfig.json file
+npm install --save-dev typescript @types/react @types/node @types/node
+npm run dev
+npm install eslint --save-dev
+npx eslint --init
+npm install --save-dev prettier eslint-config-prettier
+Add prettier to .eslintrc.json extends
+create .prettierrc & .prettierignore & .eslintignore
+Create _document.tsx, createEmotionCache.ts & theme.ts - import code from Next.JS material UI example to _app.tsx, _document.tsx, createEmotionCache.ts, & theme.ts
+npm install @material-ui/core @material-ui/icons @mui/material @mui/icons-material @emotion/react @emotion/styled @emotion/cache @emotion/server prop-types
+npm install -g @aws-amplify/cli
+amplify configure
+amplify init
+```
