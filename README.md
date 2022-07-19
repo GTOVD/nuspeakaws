@@ -2,6 +2,8 @@
 
 ### A social media link share site utilizing Authentication using Amazon Cognito, Database using DynamoDB, GraphQL API using Amazon AppSync, Storage for data using S3 Buckets, Next.JS, Static Site Generation, Incremental Static Regeneration, Server-side Render, Next.JS Image Component, React Hook Form. An extremely quick optimized website utilizing modern technologies to deliver a smooth user experience.
 
+[NuSpeak](LocalHost:3000)
+
 ## Follow in my footsteps:
 
 ```
@@ -43,9 +45,13 @@ Additional:
 ## Useful Links
 
 [Material-UI - Theme Creator](https://bareynol.github.io/mui-theme-creator/)
+
 [Material UI - Text field](https://mui.com/material-ui/react-text-field/)
+
 [Material UI - Snackbar](https://mui.com/material-ui/react-snackbar/)
+
 [React Hook Form - Getting started](https://react-hook-form.com/get-started)
+
 [Amplify Authentication - Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
 
 ## Deploy development server

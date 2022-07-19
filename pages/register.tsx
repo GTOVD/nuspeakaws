@@ -4,13 +4,14 @@ import { Alert, Button, Grid, Snackbar, TextField } from "@mui/material";
 import { useState } from "react";
 import { useUser } from "../src/context/AuthContext";
 import { Auth } from "aws-amplify";
+import { CognitoUser } from "@aws-amplify/auth";
 
 interface IFormInput {
     username: string;
     email: string;
     password: string;
     confirmPassword: string;
-    code: string;
+    verificationCode: string;
 }
 
 export default function Register() {
@@ -22,10 +23,16 @@ export default function Register() {
     const [open, setOpen] = useState<boolean>(false);
     const [signUpError, setSignUpError] = useState<string>("");
     const { user, setUser } = useUser();
+    const [showCode, setShowCode] = useState<boolean>(false);
 
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const onSubmit: SubmitHandler<IFormInput> = async (data: IFormInput) => {
         try {
-            signUp(data);
+            if (showCode) {
+                confirmSignUp(data);
+            } else {
+                await signUp(data);
+                setShowCode(true);
+            }
         } catch (err) {
             console.log(err);
             setOpen(true);
@@ -47,7 +54,7 @@ export default function Register() {
         setOpen(false);
     };
 
-    async function signUp(data: IFormInput) {
+    async function signUp(data: IFormInput): Promise<CognitoUser> {
         const { username, password, email } = data;
         try {
             const { user } = await Auth.signUp({
@@ -58,8 +65,20 @@ export default function Register() {
                 },
             });
             console.log("Signed up a user ", user);
+            return user;
         } catch (err) {
             throw err;
+        }
+    }
+
+    async function confirmSignUp(data: IFormInput) {
+        const { username, password, verificationCode } = data;
+        try {
+            await Auth.confirmSignUp(username, verificationCode);
+            const amplifyUser = await Auth.signIn(username, password);
+            console.log("Success, signed in a user", amplifyUser);
+        } catch (error) {
+            console.log("error confirming sign up", error);
         }
     }
 
@@ -181,6 +200,36 @@ export default function Register() {
                         })}
                     />
                 </Grid>
+                {showCode && (
+                    <Grid item>
+                        <TextField
+                            id="verificationCode"
+                            label="Verification Code"
+                            variant="outlined"
+                            type="text"
+                            error={errors.verificationCode ? true : false}
+                            helperText={
+                                errors.verificationCode
+                                    ? errors.verificationCode.message
+                                    : null
+                            }
+                            {...register("verificationCode", {
+                                required: {
+                                    value: true,
+                                    message: "Enter your verification code",
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: "Enter a valid verification code",
+                                },
+                                maxLength: {
+                                    value: 6,
+                                    message: "Enter a valid verification code",
+                                },
+                            })}
+                        />
+                    </Grid>
+                )}
                 <Grid item>
                     <Button
                         color="primary"
@@ -188,7 +237,7 @@ export default function Register() {
                         type="submit"
                         onClick={handleClick}
                     >
-                        Register
+                        {showCode ? "Confirm Code" : "Register"}
                     </Button>
                 </Grid>
             </Grid>
