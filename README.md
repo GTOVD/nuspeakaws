@@ -54,6 +54,10 @@ Additional:
 
 [Amplify Authentication - Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
 
+[Amplify API - Fetch Data GraphQl](https://docs.amplify.aws/lib/graphqlapi/query-data/q/platform/js/)
+
+[Next.JS - Data Fetching Overview](https://nextjs.org/docs/basic-features/data-fetching/overview)
+
 ## Deploy development server
 
 First, run the development server:
