@@ -50,6 +50,10 @@ Additional:
 
 [Material UI - Snackbar](https://mui.com/material-ui/react-snackbar/)
 
+[Material UI - Icons](https://mui.com/material-ui/material-icons/)
+
+[Material UI - Icon Button](https://mui.com/material-ui/react-button/#icon-button)
+
 [React Hook Form - Getting started](https://react-hook-form.com/get-started)
 
 [Amplify Authentication - Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)

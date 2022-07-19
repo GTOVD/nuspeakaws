@@ -1,9 +1,10 @@
-import { Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import { useUser } from "../src/context/AuthContext";
 import { listCommunities } from "../src/graphql/queries";
 import { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Communities, ListCommunitiesQuery } from "../src/API";
+import Community from "../components/community";
 
 export default function Home() {
     const { user } = useUser();
@@ -31,8 +32,10 @@ export default function Home() {
     console.log(allCommunities);
 
     return (
-        <div>
-            <Typography variant="h1"> Hello World! </Typography>
-        </div>
+        <Container maxWidth="md">
+            {allCommunities.map((communities) => (
+                <Community key={communities.id} communities={communities} />
+            ))}
+        </Container>
     );
 }
