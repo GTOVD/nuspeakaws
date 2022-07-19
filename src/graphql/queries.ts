@@ -11,6 +11,10 @@ export const getCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -50,6 +54,10 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -64,6 +72,8 @@ export const getPost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -88,6 +98,10 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -114,6 +128,10 @@ export const getComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -130,6 +148,8 @@ export const getComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
@@ -149,12 +169,18 @@ export const listComments = /* GraphQL */ `
         post {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
           owner
         }
         content
+        upvotes
+        downvotes
         createdAt
         updatedAt
         postCommentsId

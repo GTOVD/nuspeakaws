@@ -11,6 +11,10 @@ export const onCreateCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -33,6 +37,10 @@ export const onUpdateCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -55,6 +63,10 @@ export const onDeleteCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -73,6 +85,10 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost(owner: $owner) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -87,6 +103,8 @@ export const onCreatePost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -106,6 +124,10 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost(owner: $owner) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -120,6 +142,8 @@ export const onUpdatePost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -139,6 +163,10 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost(owner: $owner) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -153,6 +181,8 @@ export const onDeletePost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -174,6 +204,10 @@ export const onCreateComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -190,6 +224,8 @@ export const onCreateComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
@@ -204,6 +240,10 @@ export const onUpdateComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -220,6 +260,8 @@ export const onUpdateComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
@@ -234,6 +276,10 @@ export const onDeleteComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -250,6 +296,8 @@ export const onDeleteComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId

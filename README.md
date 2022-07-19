@@ -37,6 +37,8 @@ amplify env list
 amplify status
 amplify update api
 ampliify remove api/auth
+amplify api gql-compile
+amplify codegen
 
 Additional:
 

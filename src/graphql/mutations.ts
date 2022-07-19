@@ -14,6 +14,10 @@ export const createCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -39,6 +43,10 @@ export const updateCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -64,6 +72,10 @@ export const deleteCommunities = /* GraphQL */ `
         items {
           id
           title
+          contents
+          image
+          upvotes
+          downvotes
           createdAt
           updatedAt
           communitiesPostsId
@@ -85,6 +97,10 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -99,6 +115,8 @@ export const createPost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -121,6 +139,10 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -135,6 +157,8 @@ export const updatePost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -157,6 +181,10 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
+      downvotes
       communities {
         id
         name
@@ -171,6 +199,8 @@ export const deletePost = /* GraphQL */ `
         items {
           id
           content
+          upvotes
+          downvotes
           createdAt
           updatedAt
           postCommentsId
@@ -195,6 +225,10 @@ export const createComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -211,6 +245,8 @@ export const createComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
@@ -228,6 +264,10 @@ export const updateComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -244,6 +284,8 @@ export const updateComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
@@ -261,6 +303,10 @@ export const deleteComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
+        downvotes
         communities {
           id
           name
@@ -277,6 +323,8 @@ export const deleteComment = /* GraphQL */ `
         owner
       }
       content
+      upvotes
+      downvotes
       createdAt
       updatedAt
       postCommentsId
