@@ -2,9 +2,9 @@ import * as React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Alert, Button, Grid, Snackbar, TextField } from "@mui/material";
 import { useState } from "react";
-import { useUser } from "../src/context/AuthContext";
 import { Auth } from "aws-amplify";
 import { CognitoUser } from "@aws-amplify/auth";
+import { useRouter } from "next/router";
 
 interface IFormInput {
     username: string;
@@ -22,8 +22,8 @@ export default function Register() {
     } = useForm<IFormInput>();
     const [open, setOpen] = useState<boolean>(false);
     const [signUpError, setSignUpError] = useState<string>("");
-    const { user, setUser } = useUser();
     const [showCode, setShowCode] = useState<boolean>(false);
+    const router = useRouter();
 
     const onSubmit: SubmitHandler<IFormInput> = async (data: IFormInput) => {
         try {
@@ -34,7 +34,8 @@ export default function Register() {
                 setShowCode(true);
             }
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            setSignUpError(err.message);
             setOpen(true);
         }
     };
@@ -50,7 +51,6 @@ export default function Register() {
         if (reason === "clickaway") {
             return;
         }
-
         setOpen(false);
     };
 
@@ -77,12 +77,15 @@ export default function Register() {
             await Auth.confirmSignUp(username, verificationCode);
             const amplifyUser = await Auth.signIn(username, password);
             console.log("Success, signed in a user", amplifyUser);
+            if (amplifyUser) {
+                router.push("/");
+            } else {
+                throw new Error("Invalid Amplify user sign in");
+            }
         } catch (error) {
             console.log("error confirming sign up", error);
         }
     }
-
-    console.log("User is : ", user);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -242,11 +245,7 @@ export default function Register() {
                 </Grid>
             </Grid>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert
-                    onClose={handleClose}
-                    severity="error"
-                    sx={{ width: "100%" }}
-                >
+                <Alert onClose={handleClose} severity="error">
                     {signUpError}
                 </Alert>
             </Snackbar>
