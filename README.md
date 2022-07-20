@@ -64,6 +64,8 @@ Additional:
 
 [Next.JS - Data Fetching Overview](https://nextjs.org/docs/basic-features/data-fetching/overview)
 
+[Next.JS - Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
+
 ## Deploy development server
 
 First, run the development server:

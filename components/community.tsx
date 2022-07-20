@@ -1,4 +1,5 @@
 import {
+    ButtonBase,
     Grid,
     IconButton,
     Paper,
@@ -12,6 +13,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import theme from "../src/theme";
 import ReactPlayer from "react-player";
+import router from "next/router";
 
 interface Props {
     posts: Post;
@@ -135,49 +137,51 @@ export default function Community({ posts }: Props): ReactElement {
                                     {posts.contents}
                                 </Typography>
                             </Grid>
-                            {ReactPlayer.canPlay(
-                                "www.youtube.com/watch?v=fLWOkVIIKnQ"
-                            ) && (
-                                <Grid
-                                    item
-                                    alignSelf="center"
-                                    width="100%"
-                                    position="inherit"
-                                >
-                                    <ReactPlayer
-                                        url="www.youtube.com/watch?v=fLWOkVIIKnQ"
-                                        controls={true}
-                                        height={490}
-                                        width="100%"
-                                    />
-                                </Grid>
-                            )}
-                            {posts.image &&
-                                !ReactPlayer.canPlay(
-                                    "www.youtube.com/watch?v=fLWOkVIIKnQ"
-                                ) && (
+                            <ButtonBase
+                                onClick={() => router.push(`/post/${posts.id}`)}
+                            >
+                                {ReactPlayer.canPlay(posts.image) && (
                                     <Grid
                                         item
                                         alignSelf="center"
-                                        maxHeight={600}
+                                        width="100%"
+                                        height={490}
                                         position="inherit"
                                     >
-                                        <img
-                                            alt="Image"
-                                            src={`${posts.image}`}
+                                        <ReactPlayer
+                                            url={`${posts.image}`}
+                                            controls={true}
                                             width="100%"
                                             height="100%"
-                                            onError={(e) => {
-                                                if (e) {
-                                                    document.getElementsByTagName(
-                                                        "img"
-                                                    )[0].src =
-                                                        "upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
-                                                }
-                                            }}
+                                            position="inherit"
                                         />
                                     </Grid>
                                 )}
+                                {posts.image &&
+                                    !ReactPlayer.canPlay(posts.image) && (
+                                        <Grid
+                                            item
+                                            alignSelf="center"
+                                            maxHeight={600}
+                                            position="inherit"
+                                        >
+                                            <img
+                                                alt="Image"
+                                                src={`${posts.image}`}
+                                                width="100%"
+                                                height="100%"
+                                                onError={(e) => {
+                                                    if (e) {
+                                                        document.getElementsByTagName(
+                                                            "img"
+                                                        )[0].src =
+                                                            "upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
+                                                    }
+                                                }}
+                                            />
+                                        </Grid>
+                                    )}
+                            </ButtonBase>
                         </Grid>
                     </Grid>
                 </Paper>
