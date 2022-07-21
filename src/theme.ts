@@ -66,7 +66,7 @@ const theme = createTheme({
             color: "#d1d5db",
         },
         body2: {
-            fontSize: "0.5rem",
+            fontSize: "0.7rem",
             lineHeight: 1.75,
             color: "#9CA3AF",
         },

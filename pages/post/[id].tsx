@@ -2,7 +2,11 @@ import React, { ReactElement } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { withSSRContext } from "aws-amplify";
 import { listPosts, getPost } from "../../src/graphql/queries";
-import { GetPostQuery, ListPostsQuery, Post } from "../../src/API";
+import { GetPostQuery, ListPostsQuery, Post, Comment } from "../../src/API";
+import Communities from "../../components/community";
+import PostComments from "../../components/postcomments";
+import { Container, ThemeProvider } from "@mui/system";
+import theme from "../../src/theme";
 
 interface Props {
     post: Post;
@@ -10,7 +14,21 @@ interface Props {
 
 export default function IndividualPost({ post }: Props): ReactElement {
     console.log("got post", post);
-    return <div></div>;
+    return (
+        <div>
+            <ThemeProvider theme={theme}>
+                <Container>
+                    <Communities posts={post}></Communities>
+                    {(post.comments.items as Comment[]).map((comment) => (
+                        <PostComments
+                            key={comment.id}
+                            comment={comment}
+                        ></PostComments>
+                    ))}
+                </Container>
+            </ThemeProvider>
+        </div>
+    );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

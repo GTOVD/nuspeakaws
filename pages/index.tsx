@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import { API } from "aws-amplify";
 import { useUser } from "../src/context/AuthContext";
 import {
@@ -11,6 +11,8 @@ import {
 import { listCommunities } from "../src/graphql/queries";
 import { listPosts } from "../src/graphql/queries";
 import Community from "../components/community";
+import { ThemeProvider } from "@emotion/react";
+import theme from "../src/theme";
 
 export default function Home() {
     const { user } = useUser();
@@ -48,11 +50,12 @@ export default function Home() {
     }, []);
 
     return (
-        <Container maxWidth="md">
-            {allPosts.map((post) => (
-                <Community key={post.id} posts={post} />
-            ))}
-            <Typography />
-        </Container>
+        <ThemeProvider theme={theme}>
+            <Container maxWidth="md">
+                {allPosts.map((post) => (
+                    <Community key={post.id} posts={post} />
+                ))}
+            </Container>
+        </ThemeProvider>
     );
 }
