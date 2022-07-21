@@ -19,6 +19,9 @@ export default function PostComments({ comment }: Props): ReactElement {
                 margin="center"
                 wrap="nowrap"
                 marginTop={2}
+                border={1}
+                borderRadius={1}
+                borderColor="#9a7d00"
             >
                 <Grid item padding={2}>
                     <Typography variant="body2">

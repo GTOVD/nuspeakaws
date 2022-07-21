@@ -1,6 +1,6 @@
 ![NuSpeak](https://user-images.githubusercontent.com/42597732/179468432-8d500b20-401c-4f73-9f38-ffaae0ce5f54.png)
 
-### A social media link share site utilizing Authentication using Amazon Cognito, Database using DynamoDB, GraphQL API using Amazon AppSync, Storage for data using S3 Buckets, Next.JS, Static Site Generation, Incremental Static Regeneration, Server-side Render, Next.JS Image Component, React Hook Form. An extremely quick optimized website utilizing modern technologies to deliver a smooth user experience.
+#### A social media link share site utilizing Authentication using Amazon Cognito, Database using DynamoDB, GraphQL API using Amazon AppSync, Storage for data using S3 Buckets, Next.JS, Static Site Generation, Incremental Static Regeneration, Server-side Render, Next.JS Image Component, React Hook Form. An extremely quick optimized website utilizing modern technologies to deliver a smooth user experience.
 
 [NuSpeak](LocalHost:3000)
 
@@ -46,25 +46,27 @@ Additional:
 
 ## Useful Links
 
-[Material-UI - Theme Creator](https://bareynol.github.io/mui-theme-creator/)
-
-[Material UI - Text field](https://mui.com/material-ui/react-text-field/)
-
-[Material UI - Snackbar](https://mui.com/material-ui/react-snackbar/)
-
-[Material UI - Icons](https://mui.com/material-ui/material-icons/)
-
-[Material UI - Icon Button](https://mui.com/material-ui/react-button/#icon-button)
-
-[React Hook Form - Getting started](https://react-hook-form.com/get-started)
-
-[Amplify Authentication - Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)
-
-[Amplify API - Fetch Data GraphQl](https://docs.amplify.aws/lib/graphqlapi/query-data/q/platform/js/)
-
-[Next.JS - Data Fetching Overview](https://nextjs.org/docs/basic-features/data-fetching/overview)
-
-[Next.JS - Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)
+[Material-UI - Theme Creator](https://bareynol.github.io/mui-theme-creator/)  
+  
+[Material UI - Text field](https://mui.com/material-ui/react-text-field/)  
+  
+[Material UI - Snackbar](https://mui.com/material-ui/react-snackbar/)  
+  
+[Material UI - Icons](https://mui.com/material-ui/material-icons/)  
+  
+[Material UI - Icon Button](https://mui.com/material-ui/react-button/#icon-button)  
+  
+[Material UI - App Bar](https://mui.com/material-ui/react-app-bar/)  
+  
+[React Hook Form - Getting started](https://react-hook-form.com/get-started)  
+  
+[Amplify Authentication - Sign up, Sign in & Sign out](https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/)  
+  
+[Amplify API - Fetch Data GraphQl](https://docs.amplify.aws/lib/graphqlapi/query-data/q/platform/js/)  
+  
+[Next.JS - Data Fetching Overview](https://nextjs.org/docs/basic-features/data-fetching/overview)  
+  
+[Next.JS - Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes)  
 
 ## Deploy development server
 

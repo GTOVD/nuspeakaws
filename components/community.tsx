@@ -29,8 +29,10 @@ export default function Community({ posts }: Props): ReactElement {
                     direction="row"
                     margin="center"
                     wrap="nowrap"
-                    border={0}
                     marginTop={2}
+                    border={1}
+                    borderRadius={1}
+                    borderColor="#9a7d00"
                 >
                     <Grid
                         container
@@ -136,36 +138,28 @@ export default function Community({ posts }: Props): ReactElement {
                     </Grid>
                 </Grid>
             </Paper>
-            {/* <Grid
-                    item
-                    border={1}
-                    alignSelf="center"
-                    // justifySelf="center"
-                    // margin="center"
-                    // position="relative"
-                    padding={1}
-                >
-                    <Image
-                        src={`https://res.cloudinary.com/demo/image/fetch/${posts.image}`}
-                        width={600}
-                        height={500}
-                        layout="intrinsic"
-                    />
-                    <img
-                        alt="Italian Trulli"
-                        src={`${posts.image}`}
-                        width="900"
-                        // height="500"
-                    ></img>
-                    <iframe
-                        src="https://www.youtube.com/watch?v=BIRr0BLRgRc"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        title="video"
-                        width="600"
-                        height="500"
-                    />
-                </Grid> */}
+            {/*     
+                <Image
+                    src={`https://res.cloudinary.com/demo/image/fetch/${posts.image}`}
+                    width={600}
+                    height={500}
+                    layout="intrinsic"
+                />
+                <img
+                    alt="Italian Trulli"
+                    src={`${posts.image}`}
+                    width="900"
+                    // height="500"
+                / >
+                <iframe
+                    src="https://www.youtube.com/watch?v=BIRr0BLRgRc"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                    width="600"
+                    height="500"
+                />
+            */}
         </ThemeProvider>
     );
 }

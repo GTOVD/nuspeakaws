@@ -56,26 +56,8 @@ type Comment
     ) {
     id: ID!
     post: Post @belongsTo
+    #   reply: [Comment]
     content: String!
     upvotes: Int!
     downvotes: Int!
 }
-
-# type Reply
-#     @model
-#     @auth(
-#         rules: [
-#             # Owner can perform any action on their own Post
-#             { allow: owner, operations: [create, update, delete, read] }
-#             # Other signed in users can read everyones posts
-#             { allow: private, operations: [read] }
-#             # Non-signed in users (guests) can read everyones posts as well.
-#             { allow: public, operations: [read] }
-#         ]
-#     ) {
-#     id: ID!
-#     comment: Comment @belongsTo
-#     content: String!
-#     upvotes: Int!
-#     downvotes: Int!
-# }
