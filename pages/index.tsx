@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { API } from "aws-amplify";
 import { useUser } from "../src/context/AuthContext";
 import {
@@ -54,9 +54,11 @@ export default function Home() {
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
                 <AddPost />
-                {allPosts.map((post) => (
-                    <Community key={post.id} posts={post} />
-                ))}
+                {allPosts
+                    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+                    .map((post) => (
+                        <Community key={post.id} posts={post} />
+                    ))}
             </Container>
         </ThemeProvider>
     );

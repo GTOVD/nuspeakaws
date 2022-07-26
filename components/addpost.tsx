@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import {
-    Box,
     Button,
     Grid,
     IconButton,
@@ -11,7 +10,6 @@ import {
 } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CreatePostInput, CreatePostMutation } from "../src/API";
-import { ContentCutSharp } from "@mui/icons-material";
 import { API } from "aws-amplify";
 import { createPost } from "../src/graphql/mutations";
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth";

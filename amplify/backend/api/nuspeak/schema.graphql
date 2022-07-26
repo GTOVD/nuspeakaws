@@ -56,7 +56,7 @@ type Comment
     ) {
     id: ID!
     post: Post @belongsTo
-    #   reply: [Comment]
+    reply: [Comment] @hasMany
     content: String!
     upvotes: Int!
     downvotes: Int!

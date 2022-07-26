@@ -6,8 +6,7 @@ import {
     ThemeProvider,
     Typography,
 } from "@mui/material";
-import React, { DOMAttributes, ReactElement } from "react";
-import Image from "next/image";
+import React, { ReactElement } from "react";
 import { Post } from "../src/API";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
