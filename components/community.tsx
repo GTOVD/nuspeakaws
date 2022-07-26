@@ -76,7 +76,7 @@ export default function Community({ posts }: Props): ReactElement {
                         padding={0.5}
                     >
                         <Grid item width="100%" padding={0.2}>
-                            <Typography variant="body2">
+                            <Typography variant="body2" color="#d4af37">
                                 <b>{posts.communities?.name}</b> • Posted by{" "}
                                 {posts.owner}{" "}
                                 {millisecondsToElapsedTime(posts.createdAt)}

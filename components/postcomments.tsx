@@ -24,7 +24,7 @@ export default function PostComments({ comment }: Props): ReactElement {
                 borderColor="#9a7d00"
             >
                 <Grid item padding={2}>
-                    <Typography variant="body2">
+                    <Typography variant="body2" color="#d4af37">
                         <b>{comment.owner}</b> •{" "}
                         {millisecondsToElapsedTime(comment.createdAt)}
                     </Typography>

@@ -13,6 +13,7 @@ import { listPosts } from "../src/graphql/queries";
 import Community from "../components/community";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../src/theme";
+import AddPost from "../components/addpost";
 
 export default function Home() {
     const { user } = useUser();
@@ -52,6 +53,7 @@ export default function Home() {
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
+                <AddPost />
                 {allPosts.map((post) => (
                     <Community key={post.id} posts={post} />
                 ))}

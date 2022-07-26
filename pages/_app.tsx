@@ -9,6 +9,7 @@ import createEmotionCache from "../src/createEmotionCache";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../src/aws-exports";
 import AuthContext from "../src/context/AuthContext";
+import Header from "../components/header";
 
 Amplify.configure({ ...awsconfig, ssr: true });
 
@@ -38,6 +39,7 @@ export default function MyApp(props: MyAppProps) {
                 <ThemeProvider theme={theme}>
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
+                    <Header />
                     <Component {...pageProps} />
                 </ThemeProvider>
             </AuthContext>

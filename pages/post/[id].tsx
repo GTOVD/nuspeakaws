@@ -7,6 +7,7 @@ import Communities from "../../components/community";
 import PostComments from "../../components/postcomments";
 import { Container, ThemeProvider } from "@mui/system";
 import theme from "../../src/theme";
+import AddPost from "../../components/addpost";
 
 interface Props {
     post: Post;
@@ -19,6 +20,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
             <ThemeProvider theme={theme}>
                 <Container>
                     <Communities posts={post}></Communities>
+                    <AddPost />
                     {(post.comments.items as Comment[]).map((comment) => (
                         <PostComments
                             key={comment.id}
