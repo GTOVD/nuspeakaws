@@ -12,9 +12,7 @@ export const onCreateCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -38,9 +36,7 @@ export const onUpdateCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -64,9 +60,7 @@ export const onDeleteCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -86,9 +80,21 @@ export const onCreatePost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -103,11 +109,10 @@ export const onCreatePost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -125,9 +130,21 @@ export const onUpdatePost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -142,11 +159,10 @@ export const onUpdatePost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -164,9 +180,21 @@ export const onDeletePost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -181,11 +209,10 @@ export const onDeletePost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -205,9 +232,10 @@ export const onCreateComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -223,12 +251,37 @@ export const onCreateComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
       owner
     }
   }
@@ -241,9 +294,10 @@ export const onUpdateComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -259,12 +313,37 @@ export const onUpdateComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
       owner
     }
   }
@@ -277,9 +356,10 @@ export const onDeleteComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -295,12 +375,82 @@ export const onDeleteComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
+      owner
+    }
+  }
+`;
+export const onCreateVote = /* GraphQL */ `
+  subscription OnCreateVote($owner: String) {
+    onCreateVote(owner: $owner) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
+      owner
+    }
+  }
+`;
+export const onUpdateVote = /* GraphQL */ `
+  subscription OnUpdateVote($owner: String) {
+    onUpdateVote(owner: $owner) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
+      owner
+    }
+  }
+`;
+export const onDeleteVote = /* GraphQL */ `
+  subscription OnDeleteVote($owner: String) {
+    onDeleteVote(owner: $owner) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
       owner
     }
   }

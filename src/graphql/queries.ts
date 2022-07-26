@@ -12,9 +12,7 @@ export const getCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -55,9 +53,21 @@ export const getPost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -72,11 +82,10 @@ export const getPost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -99,9 +108,10 @@ export const listPosts = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -129,9 +139,10 @@ export const getComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -147,12 +158,37 @@ export const getComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
       owner
     }
   }
@@ -170,20 +206,60 @@ export const listComments = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
           owner
         }
+        reply {
+          nextToken
+        }
         content
-        upvotes
-        downvotes
+        votes {
+          nextToken
+        }
         createdAt
         updatedAt
         postCommentsId
+        commentReplyId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getVote = /* GraphQL */ `
+  query GetVote($id: ID!) {
+    getVote(id: $id) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
+      owner
+    }
+  }
+`;
+export const listVotes = /* GraphQL */ `
+  query ListVotes(
+    $filter: ModelVoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        vote
+        postID
+        commentID
+        createdAt
+        updatedAt
+        postVotesId
+        commentVotesId
         owner
       }
       nextToken

@@ -15,9 +15,7 @@ export const createCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -44,9 +42,7 @@ export const updateCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -73,9 +69,7 @@ export const deleteCommunities = /* GraphQL */ `
           id
           title
           contents
-          image
-          upvotes
-          downvotes
+          link
           createdAt
           updatedAt
           communitiesPostsId
@@ -98,9 +92,21 @@ export const createPost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -115,11 +121,10 @@ export const createPost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -140,9 +145,21 @@ export const updatePost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -157,11 +174,10 @@ export const updatePost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -182,9 +198,21 @@ export const deletePost = /* GraphQL */ `
       id
       title
       contents
-      image
-      upvotes
-      downvotes
+      link
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       communities {
         id
         name
@@ -199,11 +227,10 @@ export const deletePost = /* GraphQL */ `
         items {
           id
           content
-          upvotes
-          downvotes
           createdAt
           updatedAt
           postCommentsId
+          commentReplyId
           owner
         }
         nextToken
@@ -226,9 +253,10 @@ export const createComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -244,12 +272,37 @@ export const createComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
       owner
     }
   }
@@ -265,9 +318,10 @@ export const updateComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -283,12 +337,37 @@ export const updateComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
       owner
     }
   }
@@ -304,9 +383,10 @@ export const deleteComment = /* GraphQL */ `
         id
         title
         contents
-        image
-        upvotes
-        downvotes
+        link
+        votes {
+          nextToken
+        }
         communities {
           id
           name
@@ -322,12 +402,91 @@ export const deleteComment = /* GraphQL */ `
         communitiesPostsId
         owner
       }
+      reply {
+        items {
+          id
+          content
+          createdAt
+          updatedAt
+          postCommentsId
+          commentReplyId
+          owner
+        }
+        nextToken
+      }
       content
-      upvotes
-      downvotes
+      votes {
+        items {
+          id
+          vote
+          postID
+          commentID
+          createdAt
+          updatedAt
+          postVotesId
+          commentVotesId
+          owner
+        }
+        nextToken
+      }
       createdAt
       updatedAt
       postCommentsId
+      commentReplyId
+      owner
+    }
+  }
+`;
+export const createVote = /* GraphQL */ `
+  mutation CreateVote(
+    $input: CreateVoteInput!
+    $condition: ModelVoteConditionInput
+  ) {
+    createVote(input: $input, condition: $condition) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
+      owner
+    }
+  }
+`;
+export const updateVote = /* GraphQL */ `
+  mutation UpdateVote(
+    $input: UpdateVoteInput!
+    $condition: ModelVoteConditionInput
+  ) {
+    updateVote(input: $input, condition: $condition) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
+      owner
+    }
+  }
+`;
+export const deleteVote = /* GraphQL */ `
+  mutation DeleteVote(
+    $input: DeleteVoteInput!
+    $condition: ModelVoteConditionInput
+  ) {
+    deleteVote(input: $input, condition: $condition) {
+      id
+      vote
+      postID
+      commentID
+      createdAt
+      updatedAt
+      postVotesId
+      commentVotesId
       owner
     }
   }

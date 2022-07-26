@@ -47,6 +47,7 @@ export default function AddPost({ posts }: Props): ReactElement {
                 authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
             })) as { data: CreateCommentMutation };
             console.log(createNewComment);
+            window.location.reload();
             // reset({ content: "" });
             // setComments([...comment, createNewComment.data.createComment as Comment])
         } catch (err) {

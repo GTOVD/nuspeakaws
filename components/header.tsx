@@ -15,7 +15,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import { Button } from "@mui/material";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
+// import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import { useUser } from "../src/context/AuthContext";
 import { useRouter } from "next/router";
 import { Auth } from "aws-amplify";
@@ -28,13 +28,11 @@ const Search = styled("div")(({ theme }) => ({
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     border: "1px solid #9a7d00",
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto",
-    },
+    marginRight: theme.spacing(5),
+    marginLeft: theme.spacing(5),
+    width: 450,
+    // alignSelf: "center",
+    // justifySelf: "center",
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -261,7 +259,7 @@ export default function Header() {
                                     onClick={handleMobileMenuOpen}
                                     color="inherit"
                                 >
-                                    <MoreIcon />
+                                    <MoreIcon color="primary" />
                                 </IconButton>
                             </Box>
                         </>
