@@ -85,8 +85,6 @@ export const onCreatePost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -135,8 +133,6 @@ export const onUpdatePost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -185,8 +181,6 @@ export const onDeletePost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -268,8 +262,6 @@ export const onCreateComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -330,8 +322,6 @@ export const onUpdateComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -392,8 +382,6 @@ export const onDeleteComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -415,8 +403,6 @@ export const onCreateVote = /* GraphQL */ `
     onCreateVote(owner: $owner) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId
@@ -430,8 +416,6 @@ export const onUpdateVote = /* GraphQL */ `
     onUpdateVote(owner: $owner) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId
@@ -445,8 +429,6 @@ export const onDeleteVote = /* GraphQL */ `
     onDeleteVote(owner: $owner) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId

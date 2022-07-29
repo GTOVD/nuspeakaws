@@ -21,6 +21,7 @@ interface IFormInput {
     title: string;
     link?: string;
     contents?: string;
+    communitiesPostsId: string;
 }
 
 export default function AddPost({}: Props): ReactElement {
@@ -40,9 +41,8 @@ export default function AddPost({}: Props): ReactElement {
             const createNewPostInput: CreatePostInput = {
                 title: data.title,
                 contents: data.contents,
-                image: data.link,
-                upvotes: 0,
-                downvotes: 0,
+                link: data.link,
+                communitiesPostsId: "1bd7d115-c6ed-444a-b826-c01c292b0627",
             };
             const createNewPost = (await API.graphql({
                 query: createPost,

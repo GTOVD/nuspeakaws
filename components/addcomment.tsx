@@ -38,8 +38,6 @@ export default function AddPost({ posts }: Props): ReactElement {
             const createNewCommentInput: CreateCommentInput = {
                 postCommentsId: posts.id,
                 content: data.content,
-                upvotes: 0,
-                downvotes: 0,
             };
             const createNewComment = (await API.graphql({
                 query: createComment,

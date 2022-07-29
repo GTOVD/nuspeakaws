@@ -73,7 +73,5 @@ type Vote
         ]
     ) {
     id: ID!
-    vote: Int!
-    postID: ID
-    commentID: ID
+    vote: String!
 }

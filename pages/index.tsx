@@ -50,6 +50,8 @@ export default function Home() {
         fetchPostsFromAPI();
     }, []);
 
+    console.log({ allCommunities, allPosts });
+
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">

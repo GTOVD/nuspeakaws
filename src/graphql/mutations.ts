@@ -97,8 +97,6 @@ export const createPost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -150,8 +148,6 @@ export const updatePost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -203,8 +199,6 @@ export const deletePost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -289,8 +283,6 @@ export const createComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -354,8 +346,6 @@ export const updateComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -419,8 +409,6 @@ export const deleteComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -445,8 +433,6 @@ export const createVote = /* GraphQL */ `
     createVote(input: $input, condition: $condition) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId
@@ -463,8 +449,6 @@ export const updateVote = /* GraphQL */ `
     updateVote(input: $input, condition: $condition) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId
@@ -481,8 +465,6 @@ export const deleteVote = /* GraphQL */ `
     deleteVote(input: $input, condition: $condition) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId

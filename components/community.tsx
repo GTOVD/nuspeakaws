@@ -6,20 +6,115 @@ import {
     ThemeProvider,
     Typography,
 } from "@mui/material";
-import React, { ReactElement } from "react";
-import { Post } from "../src/API";
+import React, { ReactElement, useEffect, useState } from "react";
+import {
+    CreateVoteInput,
+    CreateVoteMutation,
+    Post,
+    UpdateVoteInput,
+    UpdateVoteMutation,
+    Vote,
+} from "../src/API";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import theme from "../src/theme";
 import ReactPlayer from "react-player";
 import router from "next/router";
 import millisecondsToElapsedTime from "../lib/millisecondsToElapsedTime";
+import { createVote, updateVote } from "../src/graphql/mutations";
+import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth";
+import { API } from "aws-amplify";
+import { useUser } from "../src/context/AuthContext";
 
 interface Props {
     posts: Post;
 }
 
 export default function Community({ posts }: Props): ReactElement {
+    const [existingVote, setExistingVote] = useState<string | undefined>(
+        undefined
+    );
+    const [existingUser, setExistingUser] = useState<string | undefined>(
+        undefined
+    );
+    const [upVotes, setUpVotes] = useState<number>(
+        posts.votes.items
+            ? posts.votes.items.filter((v) => v.vote === "upvote").length
+            : 0
+    );
+    const [downVotes, setDownVotes] = useState<number>(
+        posts.votes.items
+            ? posts.votes.items.filter((v) => v.vote === "downvote").length
+            : 0
+    );
+    const { user } = useUser();
+
+    console.log({ posts, user });
+    console.log({ existingVote, upVotes, downVotes, existingUser });
+
+    useEffect(() => {
+        console.log("user", user);
+        if (user) {
+            console.log("ran1", posts);
+            const findVote: Vote | undefined = posts.votes.items?.find(
+                (v) => v.owner === user.getUsername()
+            );
+            if (findVote) {
+                console.log("ran2", posts);
+                setExistingVote(findVote.vote);
+                setExistingUser(findVote.id);
+            }
+        }
+    }, [user]);
+
+    const addVote = async (voteType: string) => {
+        if (existingVote && existingVote != voteType) {
+            const updateVoteInput: UpdateVoteInput = {
+                id: existingUser,
+                vote: voteType,
+                postVotesId: posts.id,
+                commentVotesId: "0",
+            };
+            const updateExistingVote = (await API.graphql({
+                query: updateVote,
+                variables: { input: updateVoteInput },
+                authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+            })) as { data: UpdateVoteMutation };
+            if (voteType === "upvote") {
+                setUpVotes(upVotes + 1);
+                setDownVotes(downVotes - 1);
+            }
+            if (voteType === "downvote") {
+                setUpVotes(upVotes - 1);
+                setDownVotes(downVotes + 1);
+            }
+            setExistingVote(voteType);
+            setExistingUser(updateExistingVote.data.updateVote.id);
+            console.log("updated Vote: ", updateExistingVote);
+        }
+        if (!existingVote) {
+            const createNewVoteInput: CreateVoteInput = {
+                vote: voteType,
+                postVotesId: posts.id,
+                commentVotesId: "0",
+            };
+            const createNewVote = (await API.graphql({
+                query: createVote,
+                variables: { input: createNewVoteInput },
+                authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+            })) as { data: CreateVoteMutation };
+            if (createNewVote.data.createVote.vote === "upvote") {
+                setUpVotes(upVotes + 1);
+            }
+            if (createNewVote.data.createVote.vote === "downvote") {
+                setDownVotes(downVotes + 1);
+            }
+            setExistingVote(voteType);
+            setExistingUser(createNewVote.data.createVote.id);
+            console.log("created Vote: ", createNewVote);
+        }
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Paper elevation={3}>
@@ -49,17 +144,17 @@ export default function Community({ posts }: Props): ReactElement {
                             justifyItems="center"
                             width="auto"
                         >
-                            <IconButton>
+                            <IconButton onClick={() => addVote("upvote")}>
                                 <Grid item>
                                     <ArrowUpwardIcon color="primary" />
                                 </Grid>
                             </IconButton>
                             <Grid item>
                                 <Typography variant="body1">
-                                    {String(posts.upvotes - posts.downvotes)}
+                                    {upVotes - downVotes}
                                 </Typography>
                             </Grid>
-                            <IconButton>
+                            <IconButton onClick={() => addVote("downvote")}>
                                 <Grid item>
                                     <ArrowDownwardIcon color="primary" />
                                 </Grid>
@@ -93,7 +188,7 @@ export default function Community({ posts }: Props): ReactElement {
                         <ButtonBase
                             onClick={() => router.push(`/post/${posts.id}`)}
                         >
-                            {ReactPlayer.canPlay(posts.image) && (
+                            {ReactPlayer.canPlay(posts.link) && (
                                 <Grid
                                     item
                                     alignSelf="center"
@@ -102,7 +197,7 @@ export default function Community({ posts }: Props): ReactElement {
                                     position="inherit"
                                 >
                                     <ReactPlayer
-                                        url={`${posts.image}`}
+                                        url={`${posts.link}`}
                                         controls={true}
                                         width="100%"
                                         height="100%"
@@ -110,7 +205,7 @@ export default function Community({ posts }: Props): ReactElement {
                                     />
                                 </Grid>
                             )}
-                            {posts.image && !ReactPlayer.canPlay(posts.image) && (
+                            {posts.link && !ReactPlayer.canPlay(posts.link) && (
                                 <Grid
                                     item
                                     alignSelf="center"
@@ -119,7 +214,7 @@ export default function Community({ posts }: Props): ReactElement {
                                 >
                                     <img
                                         alt="Image"
-                                        src={`${posts.image}`}
+                                        src={`${posts.link}`}
                                         width="100%"
                                         height="100%"
                                         onError={(e) => {

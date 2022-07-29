@@ -94,9 +94,7 @@ export type ModelVoteConnection = {
 export type Vote = {
   __typename: "Vote",
   id: string,
-  vote: number,
-  postID?: string | null,
-  commentID?: string | null,
+  vote: string,
   createdAt: string,
   updatedAt: string,
   postVotesId: string,
@@ -208,17 +206,13 @@ export type DeleteCommentInput = {
 
 export type CreateVoteInput = {
   id?: string | null,
-  vote: number,
-  postID?: string | null,
-  commentID?: string | null,
+  vote: string,
   postVotesId: string,
   commentVotesId: string,
 };
 
 export type ModelVoteConditionInput = {
-  vote?: ModelIntInput | null,
-  postID?: ModelIDInput | null,
-  commentID?: ModelIDInput | null,
+  vote?: ModelStringInput | null,
   and?: Array< ModelVoteConditionInput | null > | null,
   or?: Array< ModelVoteConditionInput | null > | null,
   not?: ModelVoteConditionInput | null,
@@ -226,23 +220,9 @@ export type ModelVoteConditionInput = {
   commentVotesId?: ModelIDInput | null,
 };
 
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
 export type UpdateVoteInput = {
   id: string,
-  vote?: number | null,
-  postID?: string | null,
-  commentID?: string | null,
+  vote?: string | null,
   postVotesId: string,
   commentVotesId: string,
 };
@@ -288,9 +268,7 @@ export type ModelCommentFilterInput = {
 
 export type ModelVoteFilterInput = {
   id?: ModelIDInput | null,
-  vote?: ModelIntInput | null,
-  postID?: ModelIDInput | null,
-  commentID?: ModelIDInput | null,
+  vote?: ModelStringInput | null,
   and?: Array< ModelVoteFilterInput | null > | null,
   or?: Array< ModelVoteFilterInput | null > | null,
   not?: ModelVoteFilterInput | null,
@@ -408,9 +386,7 @@ export type CreatePostMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -469,9 +445,7 @@ export type UpdatePostMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -530,9 +504,7 @@ export type DeletePostMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -630,9 +602,7 @@ export type CreateCommentMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -705,9 +675,7 @@ export type UpdateCommentMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -780,9 +748,7 @@ export type DeleteCommentMutation = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -808,9 +774,7 @@ export type CreateVoteMutation = {
   createVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -828,9 +792,7 @@ export type UpdateVoteMutation = {
   updateVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -848,9 +810,7 @@ export type DeleteVoteMutation = {
   deleteVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -930,9 +890,7 @@ export type GetPostQuery = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1069,9 +1027,7 @@ export type GetCommentQuery = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1138,9 +1094,7 @@ export type GetVoteQuery = {
   getVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -1161,9 +1115,7 @@ export type ListVotesQuery = {
     items:  Array< {
       __typename: "Vote",
       id: string,
-      vote: number,
-      postID?: string | null,
-      commentID?: string | null,
+      vote: string,
       createdAt: string,
       updatedAt: string,
       postVotesId: string,
@@ -1280,9 +1232,7 @@ export type OnCreatePostSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1340,9 +1290,7 @@ export type OnUpdatePostSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1400,9 +1348,7 @@ export type OnDeletePostSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1499,9 +1445,7 @@ export type OnCreateCommentSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1573,9 +1517,7 @@ export type OnUpdateCommentSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1647,9 +1589,7 @@ export type OnDeleteCommentSubscription = {
       items:  Array< {
         __typename: "Vote",
         id: string,
-        vote: number,
-        postID?: string | null,
-        commentID?: string | null,
+        vote: string,
         createdAt: string,
         updatedAt: string,
         postVotesId: string,
@@ -1674,9 +1614,7 @@ export type OnCreateVoteSubscription = {
   onCreateVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -1693,9 +1631,7 @@ export type OnUpdateVoteSubscription = {
   onUpdateVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,
@@ -1712,9 +1648,7 @@ export type OnDeleteVoteSubscription = {
   onDeleteVote?:  {
     __typename: "Vote",
     id: string,
-    vote: number,
-    postID?: string | null,
-    commentID?: string | null,
+    vote: string,
     createdAt: string,
     updatedAt: string,
     postVotesId: string,

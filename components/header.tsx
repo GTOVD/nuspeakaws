@@ -197,6 +197,7 @@ export default function Header() {
                             src={"/NuSpeak.png"}
                             width={146}
                             height={50}
+                            priority
                             layout="intrinsic"
                         />
                     </IconButton>

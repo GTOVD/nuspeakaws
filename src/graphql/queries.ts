@@ -58,8 +58,6 @@ export const getPost = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -175,8 +173,6 @@ export const getComment = /* GraphQL */ `
         items {
           id
           vote
-          postID
-          commentID
           createdAt
           updatedAt
           postVotesId
@@ -234,8 +230,6 @@ export const getVote = /* GraphQL */ `
     getVote(id: $id) {
       id
       vote
-      postID
-      commentID
       createdAt
       updatedAt
       postVotesId
@@ -254,8 +248,6 @@ export const listVotes = /* GraphQL */ `
       items {
         id
         vote
-        postID
-        commentID
         createdAt
         updatedAt
         postVotesId
