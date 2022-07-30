@@ -1,4 +1,5 @@
 import {
+    Button,
     ButtonBase,
     Grid,
     IconButton,
@@ -25,6 +26,9 @@ import { createVote, updateVote } from "../src/graphql/mutations";
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth";
 import { API } from "aws-amplify";
 import { useUser } from "../src/context/AuthContext";
+import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
+import AddReactionOutlinedIcon from "@mui/icons-material/AddReactionOutlined";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 
 interface Props {
     posts: Post;
@@ -39,28 +43,27 @@ export default function Community({ posts }: Props): ReactElement {
     );
     const [upVotes, setUpVotes] = useState<number>(
         posts.votes.items
-            ? posts.votes.items.filter((v) => v.vote === "upvote").length
+            ? posts.votes.items.filter(
+                  (v) => v.vote === "upvote" && v.commentVotesId === "0"
+              ).length
             : 0
     );
     const [downVotes, setDownVotes] = useState<number>(
         posts.votes.items
-            ? posts.votes.items.filter((v) => v.vote === "downvote").length
+            ? posts.votes.items.filter(
+                  (v) => v.vote === "downvote" && v.commentVotesId === "0"
+              ).length
             : 0
     );
     const { user } = useUser();
 
-    console.log({ posts, user });
-    console.log({ existingVote, upVotes, downVotes, existingUser });
-
     useEffect(() => {
-        console.log("user", user);
         if (user) {
-            console.log("ran1", posts);
             const findVote: Vote | undefined = posts.votes.items?.find(
-                (v) => v.owner === user.getUsername()
+                (v) =>
+                    v.owner === user.getUsername() && v.commentVotesId === "0"
             );
             if (findVote) {
-                console.log("ran2", posts);
                 setExistingVote(findVote.vote);
                 setExistingUser(findVote.id);
             }
@@ -167,16 +170,21 @@ export default function Community({ posts }: Props): ReactElement {
                         direction="column"
                         margin="center"
                         overflow="hidden"
+                        wrap="nowrap"
                         padding={0.5}
                     >
                         <Grid item width="100%" padding={0.2}>
-                            <Typography variant="body2" color="#d4af37">
-                                <b>{posts.communities?.name}</b> • Posted by{" "}
+                            <Typography variant="body2" color="#d4af37" noWrap>
+                                <b>{posts.communities?.name}</b>
+                                {" • Posted by "}
                                 {posts.owner}{" "}
                                 {millisecondsToElapsedTime(posts.createdAt)}
-                                🤦🏿‍♂️ 5 🤦🏿‍♂️ 3
+                                {"🤦🏿‍♂️ 5 🤦🏿‍♂️ 3"}
                             </Typography>
+
+                            {/* <Button variant="outlined">{"Join"}</Button> */}
                         </Grid>
+
                         <Grid item width="100%" padding={0.2}>
                             <Typography variant="h6">{posts.title}</Typography>
                         </Grid>
@@ -229,6 +237,35 @@ export default function Community({ posts }: Props): ReactElement {
                                 </Grid>
                             )}
                         </ButtonBase>
+                        <Grid
+                            container
+                            width="100%"
+                            padding={0.2}
+                            wrap="nowrap"
+                            overflow="hidden"
+                        >
+                            <Button
+                                onClick={() => router.push(`/post/${posts.id}`)}
+                            >
+                                <CommentOutlinedIcon />
+                                <Typography color={"primary"} noWrap>
+                                    {posts.comments.items.length} {" Comments"}
+                                </Typography>
+                            </Button>
+                            <Button>
+                                <AddReactionOutlinedIcon />
+                                <Typography color={"primary"} noWrap>
+                                    {"Add Reaction"}
+                                </Typography>
+                            </Button>
+                            <Button>
+                                <ShareOutlinedIcon />
+                                <Typography color={"primary"} noWrap>
+                                    {"Share"}
+                                </Typography>
+                            </Button>
+                            {/* copy link, crosspost, embed, share to chat */}
+                        </Grid>
                     </Grid>
                 </Grid>
             </Paper>

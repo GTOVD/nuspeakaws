@@ -85,6 +85,40 @@ export const getPost = /* GraphQL */ `
                     postCommentsId
                     commentReplyId
                     owner
+                    votes {
+                        items {
+                            commentVotesId
+                            createdAt
+                            id
+                            owner
+                            postVotesId
+                            updatedAt
+                            vote
+                        }
+                    }
+                    reply {
+                        items {
+                            owner
+                            id
+                            createdAt
+                            content
+                            commentReplyId
+                            postCommentsId
+                            updatedAt
+                            votes {
+                                items {
+                                    vote
+                                    updatedAt
+                                    postVotesId
+                                    owner
+                                    id
+                                    createdAt
+                                    commentVotesId
+                                }
+                                nextToken
+                            }
+                        }
+                    }
                 }
                 nextToken
             }
@@ -135,6 +169,40 @@ export const listPosts = /* GraphQL */ `
                         postCommentsId
                         commentReplyId
                         owner
+                        votes {
+                            items {
+                                commentVotesId
+                                createdAt
+                                id
+                                owner
+                                postVotesId
+                                updatedAt
+                                vote
+                            }
+                        }
+                        reply {
+                            items {
+                                owner
+                                id
+                                createdAt
+                                content
+                                commentReplyId
+                                postCommentsId
+                                updatedAt
+                                votes {
+                                    items {
+                                        vote
+                                        updatedAt
+                                        postVotesId
+                                        owner
+                                        id
+                                        createdAt
+                                        commentVotesId
+                                    }
+                                    nextToken
+                                }
+                            }
+                        }
                     }
                     nextToken
                 }

@@ -68,9 +68,9 @@ export default function AddPost({ posts }: Props): ReactElement {
                     gap={1}
                     borderColor="#9a7d00"
                 >
-                    <IconButton onClick={() => setMinimized(!minimized)}>
+                    <IconButton onClick={(e) => setMinimized(!minimized)}>
                         <AddIcon color="primary" />
-                        <Typography color="primary">
+                        <Typography color="primary" overflow="hidden" noWrap>
                             😂 Create Comment 😂
                         </Typography>
                         <AddIcon color="primary" />
@@ -85,6 +85,7 @@ export default function AddPost({ posts }: Props): ReactElement {
                                     type="text"
                                     fullWidth
                                     multiline
+                                    autoFocus
                                     rows={5}
                                     error={errors.content ? true : false}
                                     helperText={

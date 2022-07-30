@@ -74,7 +74,7 @@ export default function AddPost({}: Props): ReactElement {
                 >
                     <IconButton onClick={() => setMinimized(!minimized)}>
                         <AddIcon color="primary" />
-                        <Typography color="primary">
+                        <Typography color="primary" noWrap>
                             😂 Create Post 😂
                         </Typography>
                         <AddIcon color="primary" />
@@ -88,6 +88,7 @@ export default function AddPost({}: Props): ReactElement {
                                     variant="outlined"
                                     type="text"
                                     fullWidth
+                                    autoFocus
                                     error={errors.title ? true : false}
                                     helperText={
                                         errors.title
